@@ -17,11 +17,14 @@ train_cfg = dict(
         min_bbox_size=0),
     rcnn=dict(
         sampler=dict(
-            type='RandomSampler',
+            type='ScoreHLRSampler',
             num=512,
             pos_fraction=0.25,
             neg_pos_ub=-1,
-            add_gt_as_proposals=True),
+            add_gt_as_proposals=True,
+            k=0.5,
+            bias=0.),
+        isr=dict(k=2, bias=0),
         carl=dict(k=1, bias=0.2)))
 
 test_cfg = dict(
